@@ -5,6 +5,7 @@ import it.unical.informatica.webapp24.recensioniristoranti.persistence.dao.Bigli
 import it.unical.informatica.webapp24.recensioniristoranti.persistence.dao.MezzoTrasportoDao;
 import it.unical.informatica.webapp24.recensioniristoranti.persistence.model.dto.Biglietto;
 import it.unical.informatica.webapp24.recensioniristoranti.persistence.model.dto.MezzoTrasporto;
+import it.unical.informatica.webapp24.recensioniristoranti.persistence.model.dto.MezzoTrasportoProxy;
 import it.unical.informatica.webapp24.recensioniristoranti.persistence.model.dto.Utente;
 
 import java.sql.Connection;
@@ -29,15 +30,14 @@ public class MezzoTrasportoDaoPostgres implements MezzoTrasportoDao {
             PreparedStatement st = connection.prepareStatement(query);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                MezzoTrasporto mezzoTrasporto = new MezzoTrasporto();
+                MezzoTrasportoProxy mezzoTrasporto = new MezzoTrasportoProxy();
                 mezzoTrasporto.setId(rs.getInt("id"));
                 mezzoTrasporto.setTipologia(rs.getString("tipologia"));
                 mezzoTrasporto.setCapienza(rs.getInt("capienza"));
 
-                BigliettoDao bigliettoDao = DbManager.getInstance().bigliettoDao();
-                List<Biglietto> biglietti = bigliettoDao.findAllByMezzoDiMezzoDiTrasporto(mezzoTrasporto);
-
-                mezzoTrasporto.setBiglietti(biglietti);
+                //BigliettoDao bigliettoDao = DbManager.getInstance().bigliettoDao();
+                //List<Biglietto> biglietti = bigliettoDao.findAllByMezzoDiMezzoDiTrasporto(mezzoTrasporto);ß
+                //mezzoTrasporto.setBiglietti(biglietti);
 
                 mezziTrasporto.add(mezzoTrasporto);
             }
