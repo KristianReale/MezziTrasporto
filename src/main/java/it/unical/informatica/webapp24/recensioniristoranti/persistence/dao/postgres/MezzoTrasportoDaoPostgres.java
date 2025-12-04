@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MezzoTrasportoDaoPostgres implements MezzoTrasportoDao {
@@ -22,7 +23,29 @@ public class MezzoTrasportoDaoPostgres implements MezzoTrasportoDao {
 
     @Override
     public List<MezzoTrasporto> findAll() {
-        return List.of();
+        List<MezzoTrasporto> mezziTrasporto = new ArrayList<MezzoTrasporto>();
+        String query = "SELECT * FROM mezzo_trasporto";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                MezzoTrasporto mezzoTrasporto = new MezzoTrasporto();
+                mezzoTrasporto.setId(rs.getInt("id"));
+                mezzoTrasporto.setTipologia(rs.getString("tipologia"));
+                mezzoTrasporto.setCapienza(rs.getInt("capienza"));
+
+                BigliettoDao bigliettoDao = DbManager.getInstance().bigliettoDao();
+                List<Biglietto> biglietti = bigliettoDao.findAllByMezzoDiMezzoDiTrasporto(mezzoTrasporto);
+
+                mezzoTrasporto.setBiglietti(biglietti);
+
+                mezziTrasporto.add(mezzoTrasporto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return mezziTrasporto;
     }
 
     @Override
