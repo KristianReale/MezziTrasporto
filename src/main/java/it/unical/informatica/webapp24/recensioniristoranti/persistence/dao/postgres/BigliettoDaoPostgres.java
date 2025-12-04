@@ -27,7 +27,7 @@ public class BigliettoDaoPostgres implements BigliettoDao {
 
     @Override
     public Biglietto findByPrimaryKey(Integer id){
-        String query = "SELECT * FROM biglietto WHERE numero = ?";
+        String query = "SELECT * FROM biglietti WHERE numero = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
             st.setInt(1, id);
@@ -66,7 +66,7 @@ public class BigliettoDaoPostgres implements BigliettoDao {
     public List<Biglietto> findAllByMezzoDiMezzoDiTrasporto(MezzoTrasporto mezzoTrasporto) {
         List<Biglietto> biglietti = new ArrayList<Biglietto>();
         Integer idMezzo = mezzoTrasporto.getId();
-        String query = "SELECT * FROM biglietto WHERE id_mezzo = ?";
+        String query = "SELECT * FROM biglietti WHERE id_mezzo = ?";
         PreparedStatement st = null;
         try {
             st = connection.prepareStatement(query);

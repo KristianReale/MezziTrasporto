@@ -2,8 +2,10 @@ package it.unical.informatica.webapp24.recensioniristoranti.persistence;
 
 
 import it.unical.informatica.webapp24.recensioniristoranti.persistence.dao.BigliettoDao;
+import it.unical.informatica.webapp24.recensioniristoranti.persistence.dao.MezzoTrasportoDao;
 import it.unical.informatica.webapp24.recensioniristoranti.persistence.dao.UtenteDao;
 import it.unical.informatica.webapp24.recensioniristoranti.persistence.dao.postgres.BigliettoDaoPostgres;
+import it.unical.informatica.webapp24.recensioniristoranti.persistence.dao.postgres.MezzoTrasportoDaoPostgres;
 import it.unical.informatica.webapp24.recensioniristoranti.persistence.dao.postgres.UtenteDaoPostgres;
 
 import java.sql.Connection;
@@ -41,6 +43,10 @@ public class DbManager {
 
     public BigliettoDao bigliettoDao(){
         return new BigliettoDaoPostgres(getConnection());
+    }
+
+    public MezzoTrasportoDao mezziTrasportoDao(){
+        return new MezzoTrasportoDaoPostgres(getConnection());
     }
 
 }
