@@ -38,8 +38,8 @@ public class BigliettoDaoPostgres implements BigliettoDao {
                 biglietto.setTratta(rs.getString("tratta"));
 
                 String username = rs.getString("username");
-                Utente utente = DbManager.getInstance().utenteDao().findByPrimaryKey(username);
-                biglietto.setUtente(utente);
+                //Utente utente = DbManager.getInstance().utenteDao().findByPrimaryKey(username);
+                //biglietto.setUtente(utente);
 
                 return biglietto;
             }
