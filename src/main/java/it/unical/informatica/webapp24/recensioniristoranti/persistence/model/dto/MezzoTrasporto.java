@@ -18,4 +18,28 @@ public class MezzoTrasporto {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public String getTipologia() {
+        return tipologia;
+    }
+
+    public void setTipologia(String tipologia) {
+        this.tipologia = tipologia;
+    }
+
+    public Integer getCapienza() {
+        return capienza;
+    }
+
+    public void setCapienza(Integer capienza) {
+        this.capienza = capienza;
+    }
+
+    public List<Biglietto> getBiglietti() {
+        return biglietti;
+    }
+
+    public void setBiglietti(List<Biglietto> biglietti) {
+        this.biglietti = biglietti;
+    }
 }
